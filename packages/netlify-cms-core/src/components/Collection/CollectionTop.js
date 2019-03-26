@@ -4,7 +4,7 @@ import styled from 'react-emotion';
 import { translate } from 'react-polyglot';
 import { Link } from 'react-router-dom';
 import { Icon, components, buttons, shadows, colors } from 'netlify-cms-ui-default';
-import { VIEW_STYLE_LIST, VIEW_STYLE_GRID } from 'Constants/collectionViews';
+import { VIEW_STYLE_LIST, VIEW_STYLE_GRID, VIEW_STYLE_DETAIL } from 'Constants/collectionViews';
 
 const CollectionTopContainer = styled.div`
   ${components.cardTop};
@@ -102,6 +102,13 @@ const CollectionTop = ({
         >
           <Icon type="grid" />
         </ViewControlsButton>
+        <ViewControlsButton
+          isActive={viewStyle === VIEW_STYLE_DETAIL}
+          onClick={() => onChangeViewStyle(VIEW_STYLE_DETAIL)}
+        >
+          <Icon type="list" />
+        </ViewControlsButton>
+
       </ViewControls>
     </CollectionTopContainer>
   );
@@ -111,7 +118,7 @@ CollectionTop.propTypes = {
   collectionLabel: PropTypes.string.isRequired,
   collectionLabelSingular: PropTypes.string,
   collectionDescription: PropTypes.string,
-  viewStyle: PropTypes.oneOf([VIEW_STYLE_LIST, VIEW_STYLE_GRID]).isRequired,
+  viewStyle: PropTypes.oneOf([VIEW_STYLE_LIST, VIEW_STYLE_GRID, VIEW_STYLE_DETAIL]).isRequired,
   onChangeViewStyle: PropTypes.func.isRequired,
   newEntryUrl: PropTypes.string,
   t: PropTypes.func.isRequired,
