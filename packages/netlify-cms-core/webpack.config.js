@@ -28,9 +28,14 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: [/(ol|redux-notifications|react-datetime)/],
-        use: ['to-string-loader', 'css-loader'],
+        include: [/(ol|redux-notifications|react-datetime|react-table)/],
+        use: [ 'to-string-loader', 'css-loader'],
       },
+      // {
+      //   test: /\.css$/,
+      //   include: [/(react-table)/],
+      //   use: [ 'style-loader', 'to-string-loader', 'css-loader'],
+      // },
     ],
   },
   plugins: [
