@@ -7,6 +7,9 @@ import { Map } from 'immutable';
 import { Cursor } from 'netlify-cms-lib-util';
 import { selectFields, selectInferedField } from 'Reducers/collections';
 import EntryCard from './EntryCard';
+import EntryDetailList from './EntryDetailList';
+import { VIEW_STYLE_DETAIL } from 'Constants/collectionViews';
+
 
 const CardsGrid = styled.ul`
   display: flex;
@@ -47,7 +50,12 @@ export default class EntryListing extends React.Component {
     const { collections, entries, publicFolder, viewStyle } = this.props;
     const inferedFields = this.inferFields(collections);
     const entryCardProps = { collection: collections, inferedFields, publicFolder, viewStyle };
-    return entries.map((entry, idx) => <EntryCard {...entryCardProps} entry={entry} key={idx} />);
+    if ( viewStyle === VIEW_STYLE_DETAIL) {
+      return <EntryDetailList {...entryCardProps} entry={entries}/>;
+    }
+    else {
+      return entries.map((entry, idx) => <EntryCard {...entryCardProps} entry={entry} key={idx}/>);
+    }
   };
 
   renderCardsForMultipleCollections = () => {
